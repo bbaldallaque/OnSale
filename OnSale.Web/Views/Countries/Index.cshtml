@@ -4,8 +4,6 @@
     ViewData["Title"] = "Index";
 }
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
-<br />
 
 <p>
     <a asp-action="Create" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Add New</a>
@@ -18,7 +16,7 @@
                 <h3 class="panel-title">Countries</h3>
             </div>
             <div class="panel-body">
-                <table class="table table-hover table-responsive table-striped" id="MyTable">
+                  <table class="dataTable-default table-hover table-condensed  table-responsive-lg table table-bordered table-striped" id="MyTable">
                     <thead>
                         <tr>
                             <th>
@@ -52,16 +50,58 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="/js/deleteDialog.js"></script>
+ 
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#MyTable').DataTable();
+            var table = $('#MyTable').DataTable({
+                columns: [
+                    null,
+            
 
+                    { "orderable": false }
+                ],
+                 language: {
+                    emptyTable: "data to display Showing",
+                    zeroRecords: "",
+                    info: "Showing _START_ to _END_ of _TOTAL_ Entries",
+                    search: "Search:",
+                    paginate: {
+                        "first": "First",
+                        "last": "Last",
+                        "next": "Next",
+                        "previous": "Previous"
+                    },
+                    lengthMenu: "Showing _MENU_ Entries"
+                },
+                pageLength: 10,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
+            });
             // Delete item
-            sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Countries/Delete/', false);
+            var item_to_delete;
+            $('.deleteItem').click((e) => {
+                item_to_delete = e.currentTarget.dataset.id;
+            });
+            $("#btnYesDelete").click(function () {
+                window.location.href = '/Countries/Delete/' + item_to_delete;
+            });
+            //sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Countries/Delete/', false);
         });
+
+           
+  
     </script>
 }
 
