@@ -7,7 +7,7 @@ namespace OnSale.Model.Entities
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(50, ErrorMessage ="The field {0} must contais less than {1} characters")]
         public string Name { get; set; }
     }
 }
