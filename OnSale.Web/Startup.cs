@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnSale.Server.Data;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 
 namespace OnSale.Web
 {
@@ -19,8 +20,9 @@ namespace OnSale.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            IMvcBuilder builder = services.AddRazorPages();
             services.AddControllersWithViews();
-
+            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddDbContext<DataContext>(cfg =>
             {
                 cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
@@ -34,6 +36,8 @@ namespace OnSale.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //builder.AddRazorRuntimeCompilation();
+
             }
             else
             {

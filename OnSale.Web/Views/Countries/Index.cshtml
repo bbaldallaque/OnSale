@@ -33,9 +33,9 @@
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
                                 <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info"><i class="glyphicon glyphicon-align-justify"></i></a>
-                                    <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                    <buton data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="fa fa-trash"></i></buton>
                                 </td>
                             </tr>
                         }
@@ -50,15 +50,12 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
- 
-
     <script type="text/javascript">
         $(document).ready(function () {
             var table = $('#MyTable').DataTable({
                 columns: [
                     null,
-            
-
+                    
                     { "orderable": false }
                 ],
                  language: {
