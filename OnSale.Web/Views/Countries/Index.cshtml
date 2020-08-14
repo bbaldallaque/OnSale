@@ -4,6 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
+<environment names="Development,Staging,Production">
+    <link rel="stylesheet" href="~/lib/dataTables/datatables.min.css" />
+</environment>
 
 <p>
     <a asp-action="Create" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Add New</a>
@@ -16,13 +19,13 @@
                 <h3 class="panel-title">Countries</h3>
             </div>
             <div class="panel-body">
-                  <table class="dataTable-default table-hover table-condensed  table-responsive-lg table table-bordered table-striped" id="MyTable">
+                <table class="dataTable-default table-hover table-condensed  table-responsive-lg table table-bordered table-striped" id="ServiceTipesList">
                     <thead>
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.Name)
                             </th>
-                            <th></th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,55 +53,64 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var table = $('#MyTable').DataTable({
-                columns: [
-                    null,
-                    
-                    { "orderable": false }
-                ],
-                 language: {
-                    emptyTable: "data to display Showing",
-                    zeroRecords: "",
-                    info: "Showing _START_ to _END_ of _TOTAL_ Entries",
-                    search: "Search:",
-                    paginate: {
-                        "first": "First",
-                        "last": "Last",
-                        "next": "Next",
-                        "previous": "Previous"
-                    },
-                    lengthMenu: "Showing _MENU_ Entries"
-                },
-                pageLength: 10,
-                dom: '<"html5buttons"B>lTfgitp',
-                buttons: [
-                    {
-                        extend: 'print',
-                        customize: function (win) {
-                            $(win.document.body).addClass('white-bg');
-                            $(win.document.body).css('font-size', '10px');
-                            $(win.document.body).find('table')
-                                .addClass('compact')
-                                .css('font-size', 'inherit');
-                        }
-                    }
-                ]
-            });
-            // Delete item
-            var item_to_delete;
-            $('.deleteItem').click((e) => {
-                item_to_delete = e.currentTarget.dataset.id;
-            });
-            $("#btnYesDelete").click(function () {
-                window.location.href = '/Countries/Delete/' + item_to_delete;
-            });
-            //sc_deleteDialog.openModal('deleteItem', true, 'btnYesDelete', '/Countries/Delete/', false);
-        });
 
-           
-  
-    </script>
-}
+        <environment names="Development,Staging,Production">
+            <link rel="stylesheet" href="~/lib/dataTables/dataTables.bootstrap4.min.css" />
+            <script src="~/lib/dataTables/datatables.min.js"></script>
+            <script src="~/lib/dataTables/dataTables.bootstrap4.min.js"></script>
+        </environment>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var table = $('#ServiceTipesList').DataTable({
+                    columns: [
+                        null,
+
+                        { "orderable": false }
+                    ],
+                    language: {
+                        emptyTable: "No hay datos para mostrar",
+                        zeroRecords: "",
+                        info: "Mostrando _START_ al _END_ de _TOTAL_ Entradas",
+                        search: "Buscar:",
+                        paginate: {
+                            "first": "Primera",
+                            "last": "Ultima",
+                            "next": "Proxima",
+                            "previous": "Anterior"
+                        },
+                        lengthMenu: "Mostrando _MENU_ Entradas"
+                    },
+                    pageLength: 10,
+                    dom: '<"html5buttons"B>lTfgitp',
+                    buttons: [
+                        { extend: 'copy' },
+                        { extend: 'csv' },
+                        { extend: 'excel', title: 'Tipos de Servicios' },
+                        { extend: 'pdf', title: 'Tipos de Servicios' },
+                        {
+                            extend: 'print',
+                            customize: function (win) {
+                                $(win.document.body).addClass('white-bg');
+                                $(win.document.body).css('font-size', '10px');
+                                $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                            }
+                        }
+                    ]
+                });
+
+                // Delete item
+                var item_to_delete;
+
+                $('.deleteItem').click((e) => {
+                    item_to_delete = e.currentTarget.dataset.id;
+                });
+
+                $("#btnYesDelete").click(function () {
+                    window.location.href = '/ServiceTypes/Delete/' + item_to_delete;
+                });
+            });
+        </script>
+    }
 

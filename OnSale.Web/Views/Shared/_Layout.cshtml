@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - OnSale.Web</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
-
-    <link href="~/lib/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="~/assent/datatables/datatables.min.css" />
-
-    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
-
-    <link rel="stylesheet" href="~/css/site.css" />
+    <environment names="Development">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+        <link href="~/lib/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/assent/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+        @*<link rel="stylesheet" href="~/lib/dataTables/datatables.min.css" />*@
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
 </head>
 <body>
     <header>
@@ -53,15 +52,22 @@
 
 
 
+    <environment names="Development">
+        <!--Datatable-->
+        @*<link href="~/lib/dataTables/dataTables.bootstrap4.min.css" rel="stylesheet" asp-append-version="true">
+       
+        <script src="~/lib/dataTables/dataTables.bootstrap4.min.js"></script>
+        <script src="~/lib/dataTables/datatables.min.js"></script>*@
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+        <script src="~/js/site.js" asp-append-version="true"></script>
 
 
+    </environment>
 
-    <link href="~/lib/dataTables/dataTables.bootstrap4.min.css" rel="stylesheet" asp-append-version="true">
-    <script src="~/lib/dataTables/datatables.min.js"></script>
-    <script src="~/lib/dataTables/dataTables.bootstrap4.min.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+   
+   
     @RenderSection("Scripts", required: false)
 </body>
 </html>
