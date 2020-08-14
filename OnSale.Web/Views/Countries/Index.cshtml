@@ -14,33 +14,40 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-default">
+        <div class="card">
             <div class="panel-heading">
                 <h3 class="panel-title">Countries</h3>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
                 <table class="dataTable-default table-hover table-condensed  table-responsive-lg table table-bordered table-striped" id="ServiceTipesList">
                     <thead>
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.Name)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DepartmentsNumber)
+                            </th>
+
                             <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                                    <buton data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="fa fa-trash"></i></buton>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DepartmentsNumber)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                <buton data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="fa fa-trash"></i></buton>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -63,6 +70,7 @@
             $(document).ready(function () {
                 var table = $('#ServiceTipesList').DataTable({
                     columns: [
+                        null,
                         null,
 
                         { "orderable": false }
@@ -108,7 +116,7 @@
                 });
 
                 $("#btnYesDelete").click(function () {
-                    window.location.href = '/ServiceTypes/Delete/' + item_to_delete;
+                    window.location.href = '/Countries/Delete/' + item_to_delete;
                 });
             });
         </script>
