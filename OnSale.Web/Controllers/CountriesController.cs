@@ -227,6 +227,7 @@ namespace OnSale.Web.Controllers
             var country = await _context.Countries
                 .FirstOrDefaultAsync(c => c.Departments.FirstOrDefault(d => d.Id == department.Id) != null);
             department.IdCountry = country.Id;
+            
             return View(department);
         }
 
@@ -240,6 +241,7 @@ namespace OnSale.Web.Controllers
                 {
                     _context.Update(department);
                     await _context.SaveChangesAsync();
+                    //return RedirectToAction($"{nameof(Details)}/{department.IdCountry}");
                     return RedirectToAction(nameof(Index));
 
                 }

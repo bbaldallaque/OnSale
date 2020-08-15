@@ -19,9 +19,7 @@ namespace OnSale.Model.Entities
         [DisplayName("Cities Number")]
         public int CitiesNumber => Cities == null ? 0 : Cities.Count;
 
-        public int? CountryId { get; set; }
-
-        public Country Country { get; set; }
+       
 
         [JsonIgnore]
         [NotMapped]

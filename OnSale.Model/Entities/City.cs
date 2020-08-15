@@ -12,9 +12,6 @@ namespace OnSale.Model.Entities
         [MaxLength(50, ErrorMessage = "The field {0} must contais less than {1} characters")]
         public string Name { get; set; }
 
-        public int? DepartmentId { get; set; }
-
-        public Department Department { get; set; }
 
         [JsonIgnore]
         [NotMapped]
