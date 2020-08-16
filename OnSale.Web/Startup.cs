@@ -27,6 +27,8 @@ namespace OnSale.Web
             {
                 cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddTransient<SeedDb>();
         }
 
 
@@ -36,8 +38,7 @@ namespace OnSale.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //builder.AddRazorRuntimeCompilation();
-
+      
             }
             else
             {
