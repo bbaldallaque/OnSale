@@ -17,8 +17,8 @@ namespace OnSale.Model.Entities
         //TODO: Pending to put the correct paths
         [Display(Name = "Image")]
         public string ImageFullPath => ImageId == Guid.Empty
-            ? $"https://localhost:44390/images/noimage.png"
-            : $"https://onsale.blob.core.windows.net/categories/{ImageId}";
+            ? $"https://localhost:44378/images/noimage.png"
+            : $"https://onsalebryant.blob.core.windows.net/categories/{ImageId}";
     }
 
 }
