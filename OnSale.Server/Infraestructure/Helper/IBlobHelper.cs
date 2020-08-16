@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace OnSale.Model.Infraestructure.Helper
+namespace OnSale.Server.Infraestructure.Helper
 {
     public interface IBlobHelper
     {

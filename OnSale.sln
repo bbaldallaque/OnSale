@@ -17,7 +17,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnSale.Api", "OnSale.Api\On
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{9AA94350-DA31-4251-A1DC-9D0488758068}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onsale.Test", "Onsale.Test\Onsale.Test.csproj", "{663304F0-A74E-450E-A391-A96F326EB310}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Onsale.Test", "Onsale.Test\Onsale.Test.csproj", "{663304F0-A74E-450E-A391-A96F326EB310}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BE6C1B00-C705-40E6-A61E-38A262BBD305}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

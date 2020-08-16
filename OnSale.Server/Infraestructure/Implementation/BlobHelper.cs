@@ -2,12 +2,12 @@
 using Microsoft.Azure.Storage;
 using Microsoft.Azure.Storage.Blob;
 using Microsoft.Extensions.Configuration;
-using OnSale.Model.Infraestructure.Helper;
+using OnSale.Server.Infraestructure.Helper;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace OnSale.Model.Infraestructure.Implementation
+namespace OnSale.Server.Infraestructure.Implementation
 {
     public class BlobHelper : IBlobHelper
     {

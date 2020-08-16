@@ -6,8 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnSale.Server.Data;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
-using OnSale.Model.Infraestructure.Helper;
-using OnSale.Model.Infraestructure.Implementation;
+using OnSale.Server.Infraestructure.Helper;
+using OnSale.Server.Infraestructure.Implementation;
 
 namespace OnSale.Web
 {
@@ -33,6 +33,7 @@ namespace OnSale.Web
             services.AddTransient<SeedDb>();
             services.AddScoped<IBlobHelper, BlobHelper>();
             services.AddScoped<IConverterHelper, ConverterHelper>();
+            services.AddScoped<ICombosHelper, CombosHelper>();
 
         }
 

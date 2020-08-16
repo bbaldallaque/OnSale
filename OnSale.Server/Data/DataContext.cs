@@ -42,6 +42,7 @@ namespace OnSale.Server.Data
 
             modelBuilder.Entity<Product>()
               .HasIndex(t => t.Name)
+
               .IsUnique();
               
         }

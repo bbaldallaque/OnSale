@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnSale.Model.Entities;
-using OnSale.Model.Infraestructure.Helper;
+using OnSale.Server.Infraestructure.Helper;
 using OnSale.Model.ViewModel;
 using OnSale.Server.Data;
 using System;
