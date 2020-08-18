@@ -8,6 +8,8 @@ using OnSale.Server.Data;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using OnSale.Server.Infraestructure.Helper;
 using OnSale.Server.Infraestructure.Implementation;
+using OnSale.Server.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace OnSale.Web
 {
@@ -25,15 +27,28 @@ namespace OnSale.Web
             IMvcBuilder builder = services.AddRazorPages();
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddIdentity<User, IdentityRole>(cfg =>
+            {
+                cfg.User.RequireUniqueEmail = true;
+                cfg.Password.RequireDigit = false;
+                cfg.Password.RequiredUniqueChars = 0;
+                cfg.Password.RequireLowercase = false;
+                cfg.Password.RequireNonAlphanumeric = false;
+                cfg.Password.RequireUppercase = false;
+            }).AddEntityFrameworkStores<DataContext>();
+
             services.AddDbContext<DataContext>(cfg =>
             {
                 cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+
+
             services.AddTransient<SeedDb>();
             services.AddScoped<IBlobHelper, BlobHelper>();
             services.AddScoped<IConverterHelper, ConverterHelper>();
             services.AddScoped<ICombosHelper, CombosHelper>();
+            services.AddScoped<IUserHelper, UserHelper>();
 
         }
 
@@ -53,7 +68,7 @@ namespace OnSale.Web
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseBrowserLink();
             app.UseEndpoints(endpoints =>

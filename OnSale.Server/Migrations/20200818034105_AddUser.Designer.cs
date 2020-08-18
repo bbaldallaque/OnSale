@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnSale.Server.Data;
 
 namespace OnSale.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200818034105_AddUser")]
+    partial class AddUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -243,37 +245,6 @@ namespace OnSale.Server.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("OnSale.Model.Entities.OrderDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Quantity")
-                        .HasColumnType("real");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderDetails");
-                });
-
             modelBuilder.Entity("OnSale.Model.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -329,38 +300,6 @@ namespace OnSale.Server.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductImages");
-                });
-
-            modelBuilder.Entity("OnSale.Server.Data.Entities.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateConfirmed")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateSent")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("OrderStatus")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("OnSale.Server.Data.Entities.User", b =>
@@ -523,17 +462,6 @@ namespace OnSale.Server.Migrations
                         .HasForeignKey("CountryId");
                 });
 
-            modelBuilder.Entity("OnSale.Model.Entities.OrderDetail", b =>
-                {
-                    b.HasOne("OnSale.Server.Data.Entities.Order", null)
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId");
-
-                    b.HasOne("OnSale.Model.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
-                });
-
             modelBuilder.Entity("OnSale.Model.Entities.Product", b =>
                 {
                     b.HasOne("OnSale.Model.Entities.Category", "Category")
@@ -546,13 +474,6 @@ namespace OnSale.Server.Migrations
                     b.HasOne("OnSale.Model.Entities.Product", null)
                         .WithMany("ProductImages")
                         .HasForeignKey("ProductId");
-                });
-
-            modelBuilder.Entity("OnSale.Server.Data.Entities.Order", b =>
-                {
-                    b.HasOne("OnSale.Server.Data.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("OnSale.Server.Data.Entities.User", b =>

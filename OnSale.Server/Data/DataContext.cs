@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using OnSale.Model.Entities;
+using OnSale.Server.Data.Entities;
 
 namespace OnSale.Server.Data
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<User>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
@@ -15,6 +17,11 @@ namespace OnSale.Server.Data
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Department> Departments { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+
 
         public DbSet<Product> Products { get; set; }
 
