@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using OnSale.Model.ViewModel;
 using OnSale.Server.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,14 @@ namespace OnSale.Server.Infraestructure.Helper
         Task AddUserToRoleAsync(User user, string roleName);
 
         Task<bool> IsUserInRoleAsync(User user, string roleName);
+
+        Task<SignInResult> LoginAsync(LoginViewModel model);
+
+        Task LogoutAsync();
+
+        Task<SignInResult> ValidatePasswordAsync(User user, string password);
+
+
     }
 
 }
