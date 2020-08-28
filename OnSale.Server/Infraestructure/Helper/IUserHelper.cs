@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using OnSale.Common.Enums;
 using OnSale.Model.ViewModel;
 using OnSale.Server.Data.Entities;
 using System;
@@ -26,7 +27,17 @@ namespace OnSale.Server.Infraestructure.Helper
 
         Task<SignInResult> ValidatePasswordAsync(User user, string password);
 
+        Task<User> AddUserAsync(AddUserViewModel model, Guid imageId, UserType userType);
+
+        Task<IdentityResult> ChangePasswordAsync(User user, string oldPassword, string newPassword);
+
+        Task<IdentityResult> UpdateUserAsync(User user);
+
+        Task<User> GetUserAsync(Guid userId);
+
+        Task<string> GenerateEmailConfirmationTokenAsync(User user);
+
+        Task<IdentityResult> ConfirmEmailAsync(User user, string token);
 
     }
-
 }

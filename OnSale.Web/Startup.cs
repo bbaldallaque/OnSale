@@ -12,6 +12,8 @@ using OnSale.Server.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 namespace OnSale.Web
 {
@@ -29,15 +31,32 @@ namespace OnSale.Web
             IMvcBuilder builder = services.AddRazorPages();
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
+
+
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/NotAuthorized";
+                options.AccessDeniedPath = "/Account/NotAuthorized";
+            });
+
+
+
+
             services.AddIdentity<User, IdentityRole>(cfg =>
             {
+                cfg.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
+                cfg.SignIn.RequireConfirmedEmail = true;
                 cfg.User.RequireUniqueEmail = true;
                 cfg.Password.RequireDigit = false;
                 cfg.Password.RequiredUniqueChars = 0;
                 cfg.Password.RequireLowercase = false;
                 cfg.Password.RequireNonAlphanumeric = false;
                 cfg.Password.RequireUppercase = false;
-            }).AddEntityFrameworkStores<DataContext>();
+                 
+            })
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<DataContext>();
 
 
 
@@ -59,7 +78,7 @@ namespace OnSale.Web
                 };
             });
 
-
+            services.AddScoped<IMailHelper, MailHelper>();
             services.AddTransient<SeedDb>();
             services.AddScoped<IBlobHelper, BlobHelper>();
             services.AddScoped<IConverterHelper, ConverterHelper>();
@@ -80,6 +99,17 @@ namespace OnSale.Web
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            //app.UseRequestLocalization(new RequestLocalizationOptions
+            //{
+            //    DefaultRequestCulture = new RequestCulture("en-US"),
+            //    SupportedCultures = new[] { new CultureInfo("en-US") },
+            //    SupportedUICultures = new[] { new CultureInfo("en-US") }
+            //});
+
+
+            app.UseStatusCodePagesWithReExecute("/error/{0}");
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

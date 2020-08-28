@@ -1,10 +1,10 @@
 {
   "dependencies": {
     "mssql1": {
-      "type": "mssql",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/onsalewebdb/databases/OnSale.Web_db",
+      "type": "mssql.azure",
       "connectionId": "DefaultConnection",
-      "suggestion": "true",
-      "ignored": "true"
+      "secretStore": "AzureAppSettings"
     }
   }
 }

@@ -11,6 +11,13 @@
         <link href="~/assent/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
+
+    <environment names="Staging,Production">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+        <link href="~/lib/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/assent/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
 </head>
 <body>
     <header>
@@ -44,34 +51,35 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                            </li>                          
+                            </li>
+
                         }
                         else
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" sp-area="" asp-controller="Account" asp-action="Login">Login</a>
                             </li>
-                            
+
                         }
                     </ul>
 
                     @*<li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Countries" asp-action="Index">Country</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Category</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
-        </li>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Countries" asp-action="Index">Country</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Category</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                        </li>
 
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </li>*@
-                    
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>*@
+
 
 
                 </div>
@@ -90,10 +98,16 @@
         </div>
     </footer>
 
-
-
     <environment names="Development">
-        
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    </environment>
+
+    <environment names="Staging,Production">
+
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
 
@@ -101,8 +115,8 @@
     </environment>
 
 
-   
-   
+
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

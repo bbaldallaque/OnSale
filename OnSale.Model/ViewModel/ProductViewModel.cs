@@ -18,5 +18,12 @@ namespace OnSale.Model.ViewModel
         public IFormFile ImageFile { get; set; }
 
         public IEnumerable<SelectListItem> Categories { get; set; }
+
+        [Display(Name = "Price")]
+        [MaxLength(12)]
+        [RegularExpression(@"^\d+([\.\,]?\d+)?$", ErrorMessage = "Use only numbers and . or , to put decimals")]
+        [Required]
+        public string PriceString { get; set; }
+
     }
 }
