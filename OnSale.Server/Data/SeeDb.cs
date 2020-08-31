@@ -29,7 +29,6 @@ namespace OnSale.Server.Data
             await CheckCountriesAsync();
             await CheckRolesAsync();
             await CheckUserAsync("223-0035346-7", "Bryant", "Baldallaque", "dr_baldallaque@hotmail.com", "809-855-8581", "c/ 10 #20 Cacique III D.N", UserType.Admin);
-
         }
 
         private async Task CheckRolesAsync()
@@ -146,5 +145,4 @@ namespace OnSale.Server.Data
             }
         }
     }
-
 }
